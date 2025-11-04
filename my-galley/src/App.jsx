@@ -16,11 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Homes />}/>
 
-          <Route path='/Place' element={<Place />}/>
-          <Route path='/Dir' element={<Dir />}/>
-          <Route path='/Login' element={<Login />}/>
 
-          <Route path='/SignIn' element={<SignIn />}/>
         </Routes>
 
     </Router>

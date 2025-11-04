@@ -1,18 +1,31 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
-import img1 from './img/store01.png';
-import img2 from './img/store2.png'; // 리엑트에서 사진을 변수에 담아두고 사용해야한다
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } 
+  from 'react-router-dom';
+import './App.css';
+
+import Place from './page/Place';
+import Dir from './page/Dir';
+import Login from './page/Login';
+import Homes from './page/Homes';
+import SignIn from './page/SignIn2';
 
 function App() {
 
   return (
-    <div className='imgBox'>
-        <img src={img1} alt="이미지1" className='image' />
-        <img src={img2}  alt="이미지2" className='image' />
-    </div>
-  )
+    <Router>
+        <Routes>
+          <Route path='/' element={<Homes />}/>
+
+          <Route path='/Place' element={<Place />}/>
+          <Route path='/Dir' element={<Dir />}/>
+          <Route path='/Login' element={<Login />}/>
+
+          <Route path='/SignIn' element={<SignIn />}/>
+        </Routes>
+
+    </Router>
+    
+  );
 }
 
-export default App
+export default App;

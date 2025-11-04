@@ -14,8 +14,8 @@ function App() {
   return (
     <Router>
         <Routes>
-          <Route path='/' element={<Homes />}/>
-
+          <Route path='/*' element={<Homes />}/> 
+          {/* '/*' => 모든 페이지를 보이게 해라 */}
 
         </Routes>
 

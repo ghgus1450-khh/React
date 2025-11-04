@@ -1,29 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import img1 from './img/store01.png';
-import img2 from './img/store2.png'; // 리엑트에서 사진을 변수에 담아두고 사용해야한다
+import { Link,Routes,Route } from "react-router-dom";
+import HomeIndex from "./HomeIndex";
+import Login from "./Login";
+import SignIn from "./SignIn2";
+import Place from "./Place";
+import Dir from "./Dir";
+
 
 
 export default function Homes() {
 
     return (
         <div className="BoxWrap">
-            <div>
+            <div className="Box">
                 <nav className="BoxNav">
                     <Link to={'Place'} className="link" >전시장</Link>
                     <Link to={'Dir'} className="link" >작가</Link>
                     <Link to={'Login'} className="link" >로그인</Link>
                 </nav>
             </div>
-            <div className='imgBox'>
-                <img src={img1} alt="이미지1" className='image' />
-                <img src={img2} alt="이미지2" className='image' />
-            </div>
-        </div>
-        /*          <Route path='/Place' element={<Place />}/>
-          <Route path='/Dir' element={<Dir />}/>
-          <Route path='/Login' element={<Login />}/>
 
-          <Route path='/SignIn' element={<SignIn />}/> */
+           <Routes>
+                <Route path="/" element={<HomeIndex />} />
+                <Route path='/Place' element={<Place />}/>
+                <Route path='/Dir' element={<Dir />}/>
+                <Route path='/Login' element={<Login />}/>
+                <Route path='/SignIn' element={<SignIn />}/>
+           </Routes>
+        
+        </div>
+        
     );
 }

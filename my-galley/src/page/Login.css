@@ -6,7 +6,7 @@
 }
 
 .inputBox{
-    width: 60%;
+    width: 40%;
     margin: 10px auto;
     display: flex;
     justify-content: space-between;
@@ -15,10 +15,11 @@
 }
 
 .input{
-    width: 200px;
+    width: 150px;
     height: 40px;
     border-radius: 10px;
     border: 1px solid #ccc;
+    font-size: 10px;
 }
 
 .inputS{

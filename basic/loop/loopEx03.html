@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript Loops</h1>
+    <h2>The for in Loop</h2>
+
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+
+    <script>
+        const person = { fname: "John", lname: "Doe", age: 25 };
+
+        let txt = "";
+        let key = "fname";
+        txt = person[key];
+        for (let x in person) {
+            txt += person[x] + " ";
+        }
+
+        document.getElementById("demo").innerHTML = txt;
+
+
+        // Create a String
+        const name = ["W3Schools","java","js","python",200,100]; // 배열
+
+        // Iterate over the string elements
+        let text = ""
+        for (const x of name) {               // 모든 배열을 다 꺼내준다(일부를 꺼내서 사용불가하다)
+            text += x + " <br> ";
+        }
+        for (let i=0; i < name.length; i++) { // 원하는대로 꺼내서 쓸 수 있다
+            text += name[i] + " <br> ";
+        }
+
+        document.getElementById("demo1").innerHTML = text;
+    </script>
+
+</body>
+
+</html>

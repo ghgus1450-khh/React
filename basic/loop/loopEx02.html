@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript Loops</h1>
+    <h2>The for Loop</h2>
+
+    <p id="demo"></p>
+
+    <script>
+        let text = "";
+    
+        // 정수숫자(1~10) 5개를 임의로 생성하여 모두 출력하고 그 숫자들의 합을 구하시오
+        // 2,4,6,7,8 합은 27
+
+        let sum=0;
+        for (let i = 0; i < 5; i++) {
+            // 1. 숫자 생성 
+            let num = Math.floor(Math.random()*10+1); // 랜덤으로 정수 1~10 까지 숫자를 생성했다
+            
+            // 2. 생성된 숫자 누적
+            sum += num; // sum = sum + num : 랜덤으로 나오는 num의 값을 합한다// sum 이라는 변수의 값을 수정함
+            console.log(num);
+
+            document.getElementById("demo").innerHTML += num + " , "; // += 늘어난다 
+
+            
+        }
+
+        // 3. 결과 출력
+        let out = document.getElementById("demo"); // out 이라는 변수에  demo 아이디의 범위를 저장
+        document.getElementById("demo").innerHTML = "<br>" + out.innerHTML + "<br>" + "합은 : " + sum;
+
+
+    </script>
+</body>
+
+</html>

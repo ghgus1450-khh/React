@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커피자판기</title>
+  <style>
+
+        #container{
+            box-sizing: border-box;
+            width: 650px;
+            margin: auto;
+            padding: 30px;
+            border: 2px solid navy;
+            box-shadow: 2px 2px 6px #ccc;
+            background-color: #fffffd;
+            overflow: hidden;
+        }
+
+        ul{
+            padding: 0; 
+            width: 580px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+     
+        
+        #pMilk, #pSugar, #pBlack, #pCoca, #pSprite, #pPepsi{
+            display: none;
+            /* visibility: hidden; */
+        }
+        
+        .products{
+            width: 120px;
+            height: 250px;
+            border: 2px solid lightsalmon;
+            background: lightyellow;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        #inMoney{
+            text-align: center; 
+            margin: 20px 0;
+            width: 80px;
+        }
+
+        #vmMoneyContainer{
+            display: inline-block;
+            min-height: 60px;
+            width: 100px;
+        }
+
+        #vmMoney{
+            display: inline-block;
+            border: 1px solid #ccc;
+            min-height: 60px;
+            width: 100px;
+        }
+
+        #coffeeOutBox{
+            float: left;
+            width: 400px;
+            min-height: 260px;
+            margin: 30px auto;
+            border: 3px solid lightsalmon;
+            background: rgb(253, 215, 183);
+            border-radius: 10px;
+            text-align: center;
+            padding-top: 20px;
+            box-sizing: border-box;
+        }
+        #coffeeOutBox>button{
+            width: 120px;
+            border: 2px solid lightcoral;
+            cursor: pointer;
+        }
+        #returnCoin{
+            border-radius: 100%; 
+            margin-left: 20px;
+            width: 70px; height: 70px;
+        }
+        #coinOutBox{
+            float: left;
+            margin: 30px auto;
+            margin-left: 60px;
+            border: 3px solid #ccc;
+            width: 100px;
+            min-height: 260px;
+            background: #e4e4e4;
+        }
+        .can{
+            width: 100px;
+            height: 134px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="container">
+                
+
+        <!-- 커피 상품 나열 -->
+        <div>
+            <ul>
+                <li class="products">
+                    <img src="img/milkOut.png" alt="밀크이미지">
+                    <p id="pMilk">밀크커피</p>
+                    <p>가격:<span id="milkPrice">300</span>원</p>
+                    <button id="milk">밀크커피</button>
+                </li>
+                <li class="products">
+                    <img src="img/sugarOut.png" alt="설탕이미지">
+                    <p id="pSugar">설탕커피</p>
+                    <p>가격:<span id="sugarPrice">500</span>원</p>
+                    <button id="sugar">설탕커피</button>
+                </li>
+                <li class="products">
+                    <img src="img/blackOut.png" alt="블랙이미지">
+                    <p id="pBlack">블랙커피</p>
+                    <p>가격:<span id="blackPrice">200</span>원</p>
+                    <button id="black">블랙커피</button>
+                </li>
+                <li class="products">
+                    <img src="img/coca.png" alt="코카콜라이미지" width="100px" height="134px">
+                    <p id="pCoca">코카콜라</p>
+                    <p>가격:<span id="cocaPrice">1400</span>원</p>
+                    <button id="coca">코카콜라</button>
+                </li>
+                <li class="products">
+                    <img src="img/sprite.png" alt="스프라이트이미지" width="100px" height="134px">
+                    <p id="pSprite">스프라이트</p>
+                    <p>가격:<span id="spritePrice">1500</span>원</p>
+                    <button id="sprite">스프라이트</button>
+                </li>
+                <li class="products">
+                    <img src="img/pepsi.png" alt="펩시이미지" width="100px" height="134px">
+                    <p id="pPepsi">펩시콜라</p>
+                    <p>가격:<span id="pepsiPrice">1200</span>원</p>
+                    <button id="pepsi">펩시콜라</button>
+                </li>
+            </ul>
+        </div>
+        <!-- 커피 제어판  -->
+        <div>
+            <button id="coin50">50원</button>
+            <button id="coin100">100원</button>
+            <button id="coin500">500원</button>
+            투입한 금액 : <input id="inMoney" size="5"  type="text" value ="0">
+            <!-- 잔돈변환 버튼 -->
+            <button id="returnCoin">잔돈변환</button>
+        </div>
+
+        <!-- 판매금액 출력 -->
+        <div id="vmMoneyBox">
+            <h2 id="vmMoneyContainer">판매 금액</h2>
+            <p id="vmMoney"></p>
+        </div>
+        
+
+        <!-- 커피 배출구 -->
+        <div id="coffeeOutBox">
+            <button onclick="outCoffee()">꺼내기</button>
+            <p id="coffeeOut"></p>
+            <p id="coffeeOut1"></p>
+        </div>
+
+        <!-- 코인 배출구 -->
+        <div id="coinOutBox">
+            <p id="coinOut"></p>
+        </div>
+    </div>
+
+</body>
+
+    <script>
+
+
+        const coffeePrice = {
+            "밀크커피" : 300, //milk:300,   
+            "설탕커피" : 500, //sugar:500,  
+            "블랙커피" : 200,  //black:200   
+            "코카콜라" : 1400, // coca:1400
+            "스프라이트" : 1500, //sprite:1500
+            "펩시콜라" : 1200 //pepsi:1200
+        }
+        // price["밀크커피"]
+        const MLIK_PRICE = coffeePrice["밀크커피"];
+        const SUGAR_PRICE = coffeePrice["설탕커피"];
+        const BLANK_PRICE = coffeePrice["블랙커피"];
+        const COCA_PRICE = coffeePrice["코카콜라"];
+        const SPRITE_PRICE = coffeePrice["스프라이트"];
+        const PEPSI_PRICE = coffeePrice["펩시콜라"];
+
+
+
+        // 자판 동전
+        let vmMoney = 0; //자판기 판매한 금액
+        
+        // 자판기 판매 금액을 로컬저장소에서 가져오기
+        loadVMmoney(); // 값이 있으면 가져와라 , 아니면 0이 되어라
+        
+
+        let inMoney = 0; // 사용자가 입력한 동전
+
+        let $inMoney = document.querySelector("#inMoney");
+
+        // 코인배출
+        let $returnCoin = document.querySelector("#returnCoin");
+
+        
+
+        // 밀크 커피
+        let milkBtn = document.querySelector("#milk");
+        let pMilk = document.querySelector("#pMilk").innerHTML;
+        let milkPrice = document.querySelector("#milkPrice").innerHTML;
+
+        // 크림 커피
+        let sugarBtn = document.querySelector("#sugar");
+        let pSugar = document.querySelector("#pSugar").innerHTML;
+        let sugarPrice = document.querySelector("#sugarPrice").innerHTML;
+
+        // 블랙 커피
+        let blackBtn = document.querySelector("#black");
+        let pBlack = document.querySelector("#pBlack").innerHTML;
+        let blackPrice = document.querySelector("#blackPrice").innerHTML;
+
+        // 코카콜라
+        let cocaBtn = document.querySelector("#coca");
+        let pCoca = document.querySelector("#pCoca").innerHTML;
+        let cocaPrice = document.querySelector("#cocaPrice").innerHTML;
+
+        // 스프라이트
+        let spriteBtn = document.querySelector("#sprite");
+        let pSprite = document.querySelector("#pSprite").innerHTML;
+        let spritePrice = document.querySelector("#spritePrice").innerHTML;
+        
+        // 펩시
+        let pepsiBtn = document.querySelector("#pepsi");
+        let pPepsi = document.querySelector("#pPepsi").innerHTML;
+        let pepsiPrice = document.querySelector("#pepsiPrice").innerHTML;
+
+
+
+        let coffeeOut = document.querySelector("#coffeeOut");
+
+
+        const coin50 = document.querySelector("#coin50");
+        const coin100 = document.querySelector("#coin100");
+        const coin500 = document.querySelector("#coin500");
+
+        const $vmMoney = document.querySelector("#vmMoney"); // $vmMoney 여기에 출력
+
+        coin50.addEventListener("click", coinProc);
+        coin100.addEventListener("click", coinProc);
+        coin500.addEventListener("click", coinProc);
+
+        milkBtn.addEventListener("click", milkProc);
+        sugarBtn.addEventListener("click", sugarProc);
+        blackBtn.addEventListener("click", blackProc);
+        cocaBtn.addEventListener("click", cocaProc);
+        spriteBtn.addEventListener("click", spriteProc);
+        pepsiBtn.addEventListener("click", pepsiProc);
+
+
+        //동전입력 처리
+        function coinProc (event) {
+            let coin = event.target.innerHTML;
+            coin = parseInt(coin);
+            inMoney += coin;
+            $inMoney.value = inMoney;
+        
+        // 커피버튼 활성화
+        // 버튼 활성화/비활성화 함수 변환
+            checkButton();
+           
+        }
+
+        function checkButton(){
+            // 버튼을 초기화(꺼진 상태로 설정)
+            milkBtn.disabled = true; // disabled : 버튼 활성화/비활성화
+            sugarBtn.disabled = true;
+            blackBtn.disabled = true;
+            cocaBtn.disabled = true;
+            spriteBtn.disabled = true;
+            pepsiBtn.disabled = true;
+            
+            if(inMoney >= SPRITE_PRICE){
+                spriteBtn.disabled = false;
+                cocaBtn.disabled = false;
+                pepsiBtn.disabled = false;
+                milkBtn.disabled = false;
+                sugarBtn.disabled = false;
+                blackBtn.disabled = false;
+            }else if(inMoney >= COCA_PRICE){
+                cocaBtn.disabled = false;
+                pepsiBtn.disabled = false;
+                milkBtn.disabled = false;
+                sugarBtn.disabled = false;
+                blackBtn.disabled = false;
+            }else if(inMoney >= PEPSI_PRICE){
+                pepsiBtn.disabled = false;
+                milkBtn.disabled = false;
+                sugarBtn.disabled = false;
+                blackBtn.disabled = false;
+            }else if(inMoney >= SUGAR_PRICE){
+                milkBtn.disabled = false;
+                sugarBtn.disabled = false;
+                blackBtn.disabled = false;
+            }else if(inMoney >= MLIK_PRICE){
+                milkBtn.disabled = false;
+                blackBtn.disabled = false;
+            }else if(inMoney >= BLANK_PRICE){
+                blackBtn.disabled = false;
+            }
+            
+        }
+
+
+        // 함수
+        function vmMoneyProc(event){ // 데이터 처리 +,-
+            let product = event.target.innerHTML;
+            let price = 0;
+            price = coffeePrice[product]; 
+            vmMoney += price;
+            inMoney -= price;
+            return vmMoney;
+        }
+
+        function milkProc(event){
+            let vmMoney = vmMoneyProc(event);
+
+            console.log("판매금액 :" + vmMoney);
+            coffeeOut.innerHTML = `<img src="img/milkOut.png" />`;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+            saveVMmoney();
+        }
+        
+        function sugarProc(event){
+            let vmMoney = vmMoneyProc(event);
+
+            coffeeOut.innerHTML = `<img src="img/sugarOut.png" />`;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+            saveVMmoney();
+        }
+        
+        function blackProc(event){
+            let vmMoney = vmMoneyProc(event);
+            
+            coffeeOut.innerHTML = `<img src="img/blackOut.png" />`;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+            saveVMmoney();
+        }
+        function cocaProc(event){
+            let vmMoney = vmMoneyProc(event);
+            
+            coffeeOut.innerHTML = `<img src="img/coca.png" class="can" />`;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+            saveVMmoney();
+        }
+        function spriteProc(event){
+            let vmMoney = vmMoneyProc(event);
+            
+            coffeeOut.innerHTML = `<img src="img/sprite.png" class="can"/>`;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+            saveVMmoney();
+        }
+        function pepsiProc(event){
+            let vmMoney = vmMoneyProc(event);
+            
+            coffeeOut.innerHTML = `<img src="img/pepsi.png" class="can" /> `;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+            saveVMmoney();
+        }
+        
+        // 코인 출력
+        $returnCoin.addEventListener("click",()=>{
+            document.querySelector("#coinOut").innerHTML = inMoney;
+            document.querySelector("#inMoney").value = "0";
+            inMoney = 0;
+            checkButton();
+        });
+    
+        function outCoffee(){
+            document.querySelector("#coffeeOut1").innerHTML = "음료를 꺼냈습니다";
+            let iscoffeeOut = true;
+        }
+
+        // 자판기 판매금액 저장
+        // window.localStorage.setItem('name','anna');
+        // window.localStorage.setItem('age','20');
+        // getItemconst name = window.localStorage.getItem('name');
+        // const age = window.localStorage.getItem('age');
+
+        function saveVMmoney(){
+            window.localStorage.setItem('money',vmMoney);
+        }
+
+        function loadVMmoney(){
+            if(localStorage.getItem('money') !== null){
+                vmMoney = window.localStorage.getItem('money');
+                vmMoney = parseInt(vmMoney);
+                
+            }
+        }
+
+
+        
+</script>
+
+</html>

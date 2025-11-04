@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="result">
+        결과값 : 
+    </div>
+    <div id="result2"></div>
+    
+    <script>
+        let myFunction = function(a,b){
+            return a*b;
+        }
+        let result = myFunction(3,4);
+        document.querySelector("#result").innerHTML = "디폴트 function 식 :" + result;
+
+        // document.querySelector("#result").innerHTML = myFunction(3,4); 변수 안 만들 때
+
+        // Arrow Function 
+        let myFunction2 = (a,b) => a*b;
+        let result2 = myFunction2(3,4);
+        document.querySelector("#result2").innerHTML = "Arrow Function 식 :" + result2; 
+
+    </script>
+</body>
+</html>

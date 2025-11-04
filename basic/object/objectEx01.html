@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<h1>JavaScript Object Properties</h1>
+<h2>Access a Property with .</h2>
+
+<p id="demo"></p>
+
+<script>
+// Create an Object:
+const person = {
+  firstname: "John",
+  lastname: "Doe",
+  age: 50,
+  eyecolor: "blue"
+};
+
+// Create new Object
+const student = person; // 객체 공유하기(객체의 주소가 같다)
+student.firstname = "홍길동";
+student.age = 60;
+
+// Display Data from the Object: 
+document.getElementById("demo").innerHTML 
+= person.firstname + " is " + person.age+ " years old.";
+
+
+// document.getElementById("demo").innerHTML = person.firstname + " is " + person.age + " years old.";
+// person.firstname + "is" + person.age + "years old";
+
+const fruits = [
+  ["apples", 300],
+  ["pears", 900],
+  ["bananas", 500]
+];
+
+const myObj = Object.fromEntries(fruits); // 배열을 객체로 바꿔준다
+document.getElementById("demo").innerHTML = myObj.pears;
+
+console.log(fruits[1][1]); // 2번째 배열 중 2번째 값 출력
+console.log(myObj);
+
+</script>
+
+</body>
+</html>

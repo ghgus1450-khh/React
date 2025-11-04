@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            padding: 30px;
+            border: 2px solid #666;
+            margin: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #outer{background-color: #e7a5a5;}
+
+        #middle{background-color: cadetblue;}
+
+        #inner{background-color: coral;}
+    </style>
+</head>
+<body>
+    <div id="outer">
+        Outer (최상위)
+        <div id="middle">
+            Middle(중간)
+            <div id="inner">
+                Inner (클릭 대상)
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const outer = document.querySelector("#outer");
+    const middle = document.querySelector("#middle");
+    const inner = document.querySelector("#inner");
+
+    // 세 번째 인자(useCapture)를 생략하거나 false로 두면 버블링 단계에서 동작.
+    
+    // 이벤트 등록
+    outer.addEventListener("click",()=>{
+        console.log("클릭 이벤트 : Outer ** 최상위");
+    });
+    middle.addEventListener("click",()=>{
+        console.log("클릭 이벤트 : Middle ** 중간");
+    });
+    inner.addEventListener("click",()=>{
+        console.log("클릭 이벤트 : Inner ** 클릭대상");
+    });
+
+    // => 이벤트 버블링 : 맨 아래 있는 자식들은 최상위 부모와 겹치게 된다, 전파가 된다
+
+
+</script>
+</html>

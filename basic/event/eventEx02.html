@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript HTML Events</h1>
+    <h2>The onclick Attribute</h2>
+
+    <!-- <h2 onclick="this.innerHTML='Ooops!'">Click on this text!</h2> -->
+    <!-- <h2 id="aa" onclick="changeText()">Click on this text!</h2> -->
+    <h2 onclick="changeText(this)">Click on this text!</h2>
+    <h2 onclick="changeText(this)">Click on this text!</h2>
+    <h3 onclick="changeText(this)">Click on this text!</h2>
+    <h4 onclick="changeText(this)">Click on this text!</h2>
+    <!-- 이벤트 this 사용문법 -->
+
+            <script>
+                //function changeText (){
+                //	document.getElementById("aa").innerHTML = "Ooops!";
+                //}
+                function changeText(id) {
+                    id.innerHTML = "Ooops!";
+                }
+            </script>
+</body>
+
+</html>

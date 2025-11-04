@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커피자판기</title>
+   <style>
+        #container{
+            width: 300px;
+            margin:auto;
+            border:10px soild #eee;
+            padding: 1em;
+        }
+
+        ul{
+            padding: 0; 
+            width: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .products{
+            width: 100px;
+            height: 150px;
+            border: 2px solid lightsalmon;
+            background: lightyellow;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        #inMoney{
+            text-align: center; 
+            margin: 20px 0;
+            width: 50px;
+        }
+
+        #coffeeOut{
+            width: 300px;
+            min-height: 100px;
+            margin: auto;
+            border: 2px solid lightsalmon;
+            background: #fdfdfd;
+            border-radius: 10px;
+            text-align: center;
+            padding-top: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <!-- 커피 상품 나열 -->
+        <div>
+            <ul>
+                <li class="products">
+                    <p id="pMilk">밀크커피</p>
+                    <p>가격:<span id="milkPrice">300</span>원</p>
+                    <button id="milk">밀크커피</button>
+                </li>
+                <li class="products">
+                    <p id="pBlack">블랙커피</p>
+                    <p>가격:<span id="blackPrice">400</span>원</p>
+                    <button id="black">블랙커피</button>
+                </li>
+            </ul>
+
+        </div>
+        <!-- 커피 제어판 -->
+        <div>
+            <button id="coin50">50원</button>
+            <button id="coin100">100원</button>
+            <button id="coin500">500원</button>
+            <br>
+            투입한 금액 : <input id="inMoney" type="text" readonly value="0">
+        </div>
+        <!-- 커피 배출구 -->
+        <div id="coffeeOut">
+   
+        </div>
+    </div>
+</body>
+<script>
+    // 자판 동전
+    let vmMoney = 0;
+    let inMoney = 0;
+
+    // $변수명 => 화면에 표시되는 변수 설정(편리하다)
+    let $inMoney = document.querySelector("#inMoney");
+
+    // 커피버튼
+    let milkBtn = document.querySelector("#milk");
+    let blackBtn = document.querySelector("#black");
+
+    // 커피이름 출력
+    let pMilk = document.querySelector("#pMilk").innerHTML;
+    let pBlack = document.querySelector("#pBlack").innerHTML;
+
+    // 커피가격 출력
+    let milkPrice = document.querySelector("#milkPrice").innerHTML;
+    let blackPrice = document.querySelector("#blackPrice").innerHTML;
+    
+    // 커피 배출구
+    let coffeeOut = document.querySelector("#coffeeOut");
+
+    // 코인 설정
+    const coin50 = document.querySelector("#coin50");
+    const coin100 = document.querySelector("#coin100");
+    const coin500 = document.querySelector("#coin500");
+
+    // 코인클릭이벤트
+    coin50.addEventListener("click",coinProc);
+    coin100.addEventListener("click",coinProc);
+    coin500.addEventListener("click",coinProc);
+
+    // 커피버튼 이벤트
+    milkBtn.addEventListener("click",milkProc);
+    blackBtn.addEventListener("click",blackProc);
+
+
+    // 동전입력 처리
+    function coinProc(event){
+        let coin = event.target.innerHTML; // 이벤트로 타겟을 찾아와준다
+        coin = parseInt(coin);
+        inMoney += coin;
+        $inMoney.value = inMoney;
+    }
+
+    // 커피출력
+    function milkProc(){
+        coffeeOut.innerHTML = ` ${milkPrice} 원 <br> ${pMilk} 나왔습니다`;
+    }
+    function blackProc(){
+        coffeeOut.innerHTML = `${blackPrice} 원 <br> ${pBlack} 나왔습니다`;
+    }
+
+
+</script>
+
+</html>

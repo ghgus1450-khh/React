@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<h1>JavaScript HTML Events</h1>
+
+<script>
+    window.onload = function(){
+        document.getElementById("demo").innerHTML="Hello";
+    }
+    
+</script>
+
+<h2>The onclick Attribute</h2>
+
+<!-- <button onclick="document.getElementById('demo').innerHTML=Date()">The time is? : 일반</button>  date() = 처리단계, => innerHTML = 출력단계 -->
+
+<!-- <button onclick="getDate()">The tim is? : 함수</button> -->
+
+<button onclick="this.innerHTML=Date()">onclick</button> <!--this는 어딘가에서 가장 가까운 녀석을 가져온다, 버튼을 가져와 버튼속성 안에 값을 넣었다-->
+<button onmouseover="this.innerHTML=Date()">onmouseover</button>
+
+<p id="demo"></p>
+
+</body>
+<script>
+    function getDate(){
+        document.getElementById('demo').innerHTML=Date();
+    }
+</script>
+</html>

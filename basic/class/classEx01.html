@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript Classes</h1>
+    <p>Creating two car objects from a car class:</p>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+
+    <script>
+        class Car {                           // class 식 
+             constructor(name, year, color) {         // : class className {  
+                 this.name = name;             //      contructor( ){ .... }
+                 this.year = year;             //    }
+                 this.color = color;
+             }
+
+            age(){
+                const date = new Date();
+                return date.getFullYear() - this.year; // 현재 년도 - 태어난 년도 = ( )의 값을 돌려준다, 태어난 해(나이)를 구할 수 있다
+            }       
+
+            getColor(){  // 색상 메서드 추가
+                return " 메서드 색상 :" + this.color;
+             }
+        }
+
+
+        // 자동차의 색상 속성을 추가하고
+        // 색상을 알려주는 메서드를 추가하시오
+
+         const myCar1 = new Car("Ford", 2014, "Red"); // 변수 안에 원하는 객체 값을 대입해준다
+         const myCar2 = new Car("Audi", 2019, "Black");
+        
+      
+
+        document.getElementById("demo").innerHTML =
+            myCar1.name + " " + myCar1.year + " 나이 :" + myCar1.age() + 
+            "<br>" + myCar1.getColor() + " 디폴트 색상 : " + myCar1.color;
+        
+        document.querySelector("#demo1").innerHTML = 
+            myCar2.name + " " + myCar2.year + " 나이 :" + myCar2.age() + 
+            "<br>" +  myCar2.getColor() + " 디폴트 색상 : " + myCar2.color;
+   
+    </script>
+
+</body>
+
+</html>

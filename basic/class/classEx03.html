@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript Class Static Methods</h1>
+    <p>A static method is created with the "static" keyword, and you can only call the method on the class itself.</p>
+
+    <p id="demo"></p>
+
+    <script>
+        class Car {
+            constructor(name) {
+                this.name = name;
+            }
+            static hello() { // 클래스 고정, 저장
+                return "Hello!!~~~~~~";
+            }
+        }
+
+        const myCar = new Car("Ford");
+
+        //You can call 'hello()' on the Car Class:
+        document.getElementById("demo").innerHTML = Car.hello() + myCar.name;
+        document.getElementById("demo").innerHTML = Math.random()*100; // Math.random 도 static.class의 일종
+        document.getElementById("demo").innerHTML = "현재시간 :" + Date.now().toLocaleString(); // now 
+        let num="234"; // parseInt(num)
+        let num1=234.655;
+        document.getElementById("demo").innerHTML =  "숫자변환 : " + (Number(num) + 100);
+        document.getElementById("demo").innerHTML = "정수 ? : " + Number.isInteger(num1); // true or false
+      
+    </script>
+</body>
+
+</html>

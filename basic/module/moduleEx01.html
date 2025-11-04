@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript Modules</h1>
+
+    <p id="demo"></p>
+
+    <script type="module"> /* 스크립트 내용을 쪼개서 사용할 수 있다 */
+        import msg from './message.js'; // 디폴트로 불러온 값 , 줄여서 사용 가능
+        import {name,age} from './message.js'; // 객체로 불러온 값 , 줄여서 사용 불가능
+        // import name from './message.js'; 디폴트 문법만 가능( 객체로 묶으면 불가능 )
+        // import {name} from './message.js'; 객체에서 하나만 빼오고 싶을 떄 {} 사용
+
+        document.getElementById("demo").innerHTML 
+        = name + " " + age + "<br>" + msg();
+
+    </script>
+
+</body>
+
+</html>

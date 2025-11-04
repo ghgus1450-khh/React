@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버스요금 계산 프로그램</title>
+    <style>
+        label{display: block;}
+        #num{display: block;}
+    </style>
+</head>
+
+<body>
+    
+    <div id="wrap">
+        <h2>버스요금을 냅시다</h2>
+
+        <div id="inputBox">
+            <p>학생 : 교통카드 750원, 현금 900원</p>
+            <p>노인 : 교통카드 1,200원, 현금 1,700원</p>
+            <p>일반 : 교통카드 1,500원, 현금 1,700원</p>
+
+            <label for="age">연령대 선택</label>
+            <input type="radio" id="age" name="age" checked>학생
+            <input type="radio" id="age" name="age">노인
+            <input type="radio" id="age" name="age">일반
+
+            <label for="num">인원수</label>
+            <input type="number" id="num" placeholder="인원수를 적어주세요">
+        </div>
+
+        <button id="moneyBt">요금합계</button>
+
+        <div id="result">
+
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    const moneyBt = document.querySelector("#moneyBt");
+    
+    moneyBt.onClick = () => {
+        const age = document.querySelector("input[type='radio']:checked").value;
+        const num = document.querySelector("#num").value;
+
+        
+
+    };
+    console.log(age);
+
+</script>
+
+</html>

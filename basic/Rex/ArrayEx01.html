@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규식 활용</title>
+</head>
+
+<body>
+    <h1>Regular Expressions</h1>
+
+    <p>Search a string for "w3Schools", and display the position of the match:</p>
+    <p id="demo"></p>
+
+    <script>
+        // 이메일 주소 검증
+
+        /*
+            /^ : 문자열 시작
+            [a-zA-Z._%+-]+ : 영문자, 숫자, 그리고 ._%+- 특수문자 반복
+            @ : '@' 문자
+            [a-zA-Z0-9.-]+ : 도메인 이름
+            \.:'-'문자
+            [a-zA-z]{2,} : 최상위 도메인 (2글자 이상)
+            $/ : 문자열 끝
+        */
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ // a-z : 소문자 허용, A-Z : 대문자 허용, 0-9 : 0부터 9까지 허용, ._%+- : 해당된 특수문자를 허용 
+
+
+        const test1 = "TEST@example.com";
+        const test2 = "test-example.com";
+        console.log(emailRegex.test(test1));
+        console.log(emailRegex.test(test2));
+
+
+        // 비밀번호 규칙(예 ) 최소 8자, 대문자, 소문자, 숫자, 특수문자 포함 )을 만족하는지 검사합니다 
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+
+        /*
+             /^(?=.*[a-z]) : 소문자가 최소 1개 있는지 확인 (전방 탐색)
+             (?=.*[A-Z]) : 대문자가 최소 1개 있는지 확인
+             (?=.*\d) : 숫자가 최소 1개 있는지 확인
+             (?=.*[@$!%*?&]) : 특수문자가 최소 1개 있는지 확인
+             [A-Za-z\d@$!%*?&]{8,} : 허용된 문자들로 8자 이상
+        */
+
+
+        // 휴대폰 번호 규칙
+        const phoneStr = "010-1234-5678";
+        const hdpRegex = /(\d{3})(\d{4})(\d{4})/;
+
+        /*
+            (\d{3}) : 숫자 3개를 그룹 1($1)로 캡처
+            (\d{4}) : 숫자 4개를 그룹 2($2)로 캡처
+            (\d{4}) : 숫자 4개를 그룹 3($3)로 캡처
+            replace 메서드의 두번째 인자로 "$1-$2-$3"을 주어 포맷팅
+        */
+
+        const formattedPhone = phoneStr.replace(hdpRegex, "$1-$2-$3");
+        console.log(formattedPhone); // "010-1234-4567"
+
+
+
+
+        // 문자열에서 숫자만 추출
+        const mixedString = "AB12CD34EF56"
+        const numbersOnlyRegex = /\d+/g; // 'g' 플래그는 전역 검색
+
+        const numbers = mixedString.match(numbersOnlyRegex);
+
+        console.log(numbers); // ["12", "345", "6"]
+        console.log(numbers.join("")); // "123456"
+
+        /*
+         * \d: 숫자를 의미 (0-9)
+         * +: 1번 이상 반복
+         * g: 문자열 전체에서 일치하는 모든 부분을 찾음
+        */
+
+
+        // 태그 제거
+        const htmlString = "<p>안녕하세요! <strong>중요한</strong>내용입니다.<p>";
+        const stripHtmlRegex = /<[^>]*>/g;
+
+        const plainText = htmlString.replace(stripHtmlRegex, "");
+
+        console.log(plainText); // "안녕하세요! 중요한 내용입니다."
+
+        /*
+         * <: '<' 문자
+         * [^>]*: '>'를 제외한 모든 문자가 0번 이상 반복
+         * >: '>' 문자
+        */
+
+
+
+        // 숫자 단위 넣기
+        const number = 1234567890;
+        const addCommasRegex = /\B(?=(\d{3})+(?!\d))/g;
+
+        const formattedNumber = number.toString().replace(addCommasRegex, ",");
+
+        console.log(formattedNumber); // "1,234,567,890"
+
+        /*
+         * \B: 단어 경계가 아닌 곳
+         * (?=(\d{3})+(?!\d)): 3자리 숫자가 1번 이상 반복되고, 그 뒤에 숫자가 없는 위치를 찾음 (전방 탐색)
+        */
+
+        
+
+
+
+    </script>
+</body>
+
+</html>

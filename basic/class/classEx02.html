@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript Classes</h1>
+    <p>Creating two car objects from a car class:</p>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+
+    <script> 
+        class Car {                          
+            constructor(brand) {    
+                console.log('상위 클래스의 생성자');   
+                this.carname = brand;
+            }
+
+            present(){
+                return ' I have a ' + this.carname;
+            }
+        }
+
+        class Model extends Car {
+            constructor(brand, model) {
+                console.log('하위 클래스의 생성자');
+                super(brand);
+                this.model = model;
+            }
+            show(){
+                return this.present() + ' , it is a ' + this.model;
+            }
+        }
+
+        const myCar3 = new Model("KIA","K5");
+        const myCar1 = new Car("kia")
+    
+        document.getElementById("demo").innerHTML = myCar3.present() + "이고" + myCar3.show();
+        document.getElementById("demo1").innerHTML = myCar3.present() + "이고" + myCar1.carname;
+    </script>
+
+</body>
+
+</html>

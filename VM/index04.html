@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커피 자판기</title>
+    <style>
+
+        #container{
+            width: 400px;
+            margin: auto;
+            border:10px soild #eee;
+            padding: 1em;
+        }
+
+        ul{
+            padding: 0; 
+            width: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #pMilk, #pCream, #pBlack{display: none;}
+        
+        .products{
+            width: 100px;
+            height: 150px;
+            border: 2px solid lightsalmon;
+            background: lightyellow;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        #inMoney{
+            text-align: center; 
+            margin: 20px 0;
+            width: 50px;
+        }
+
+        #coffeeOutBox{
+            width: 300px;
+            min-height: 100px;
+            margin: 30px auto;
+            border: 2px solid lightsalmon;
+            background: #fdfdfd;
+            border-radius: 10px;
+            text-align: center;
+            padding-top: 20px;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        #returnCoin{
+            border-radius: 100%;
+            width: 70px; height: 70px;
+        }
+        #coinOutBox{
+            display: inline-block;
+            margin: 30px auto;
+            border: 2px solid #ccc;
+            width: 80px;
+            min-height: 100px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="container">
+        <!-- 커피 상품 나열 -->
+        <div>
+            <ul>
+                <li class="products">
+                    <img src="img/milkOut.png" alt="밀크이미지">
+                    <p id="pMilk">밀크커피</p>
+                    <p>가격:<span id="milkPrice">300</span>원</p>
+                    <button id="milk">밀크커피</button>
+                </li>
+                <li class="products">
+                    <img src="img/sugarOut.png" alt="설탕이미지">
+                    <p id="pCream">설탕커피</p>
+                    <p>가격:<span id="creamPrice">300</span>원</p>
+                    <button id="cream">설탕커피</button>
+                </li>
+                <li class="products">
+                    <img src="img/blackOut.png" alt="블랙이미지">
+                    <p id="pBlack">블랙커피</p>
+                    <p>가격:<span id="blackPrice">200</span>원</p>
+                    <button id="black">블랙커피</button>
+                </li>
+            </ul>
+        </div>
+        <!-- 커피 제어판  -->
+        <div>
+            <button id="coin50">50원</button>
+            <button id="coin100">100원</button>
+            <button id="coin500">500원</button>
+            투입한 금액 : <input id="inMoney" size="5"  type="text" value ="0">
+            <!-- 잔돈변환 버튼 -->
+            <button id="returnCoin">잔돈변환</button>
+        </div>
+        
+        <!-- 판매금액 출력 -->
+        <div id="vmMoneyBox">
+            <h2>판매 금액</h2>
+            <p id="vmMoney"></p>
+        </div>
+        
+        <!-- 커피 배출구 -->
+        <div id="coffeeOutBox">
+            <button onclick="outCoffee()">꺼내기</button>
+            <p id="coffeeOut"></p>
+            <p id="coffeeOut1"></p>
+        </div>
+
+        <!-- 코인 배출구 -->
+        <div id="coinOutBox">
+            <p id="coinOut"></p>
+        </div>
+    </div>
+
+
+    <script>
+        const coffeePrice = {
+            "밀크커피" : 300, //milk:300,   
+            "프림커피" : 300, //cream:300,  
+            "블랙커피" : 200  //black:200   
+        }
+
+
+
+        // 자판 동전
+        let vmMoney = 0; //자판기 판매한 금액
+        let inMoney = 0; // 사용자가 입력한 동전
+
+        let $inMoney = document.querySelector("#inMoney");
+
+        // 코인배출
+        let $returnCoin = document.querySelector("#returnCoin");
+
+        
+
+        // 밀크 커피
+        let milkBtn = document.querySelector("#milk");
+        let pMilk = document.querySelector("#pMilk").innerHTML;
+        let milkPrice = document.querySelector("#milkPrice").innerHTML;
+
+        // 크림 커피
+        let creamBtn = document.querySelector("#cream");
+        let pCream = document.querySelector("#pCream").innerHTML;
+        let creamPrice = document.querySelector("#creamPrice").innerHTML;
+
+        // 블랙 커피
+        let blackBtn = document.querySelector("#black");
+        let pBlack = document.querySelector("#pBlack").innerHTML;
+        let blackPrice = document.querySelector("#blackPrice").innerHTML;
+
+        let coffeeOut = document.querySelector("#coffeeOut");
+
+
+        const coin50 = document.querySelector("#coin50");
+        const coin100 = document.querySelector("#coin100");
+        const coin500 = document.querySelector("#coin500");
+
+        const $vmMoney = document.querySelector("#vmMoney"); // $vmMoney 여기에 출력
+
+        coin50.addEventListener("click", coinProc);
+        coin100.addEventListener("click", coinProc);
+        coin500.addEventListener("click", coinProc);
+
+        milkBtn.addEventListener("click", milkProc);
+        creamBtn.addEventListener("click", creamProc);
+        // 블랙
+        blackBtn.addEventListener("click", blackProc);
+
+
+        //동전입력 처리
+        function coinProc (event) {
+            let coin = event.target.innerHTML;
+            coin = parseInt(coin);
+            inMoney += coin;
+            $inMoney.value = inMoney;
+        
+        // 커피버튼 활성화
+        // 버튼 활성화/비활성화 함수 변환
+            checkButton();
+           
+        }
+
+        function checkButton(){
+            // 버튼을 초기화(꺼진 상태로 설정)
+            milkBtn.disabled = true; // disabled : 버튼 활성화/비활성화
+            creamBtn.disabled = true;
+            blackBtn.disabled = true;
+            
+            if(inMoney >= 300){
+                milkBtn.disabled = false;
+                creamBtn.disabled = false;
+                blackBtn.disabled = false;
+            }else if(inMoney >= 200){
+            blackBtn.disabled = false;
+            }
+        }
+
+
+        // 함수
+        function vmMoneyProc(event){ // 데이터 처리 +,-
+            let product = event.target.innerHTML;
+            let price = 0;
+            price = coffeePrice[product]; 
+            vmMoney += price;
+            inMoney -= price;
+            return vmMoney;
+        }
+
+        function milkProc(event){
+            let vmMoney = vmMoneyProc(event);
+
+            console.log("판매금액 :" + vmMoney);
+            coffeeOut.innerHTML = `<p><b>${milkPrice} 원 ${pMilk} 나왔습니다.</b></p>`;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+        }
+        
+        function creamProc(event){
+            let vmMoney = vmMoneyProc(event);
+
+            coffeeOut.innerHTML = `<p><b> ${creamPrice} 원 ${pCream} 나왔습니다.</b></p>`;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+        }
+        //블랙 커피
+        function blackProc(event){
+            let vmMoney = vmMoneyProc(event);
+
+            coffeeOut.innerHTML = `<p><b> ${blackPrice} 원 ${pBlack} 나왔습니다.</b></p>`;
+            $vmMoney.innerHTML = vmMoney;
+            $inMoney.value = inMoney;
+            checkButton();
+        }
+        
+        // 코인 출력
+        $returnCoin.addEventListener("click",()=>{
+            document.querySelector("#coinOut").innerHTML = inMoney;
+            document.querySelector("#inMoney").value = "0";
+            inMoney = 0;
+            checkButton();
+        });
+    
+        function outCoffee(){
+            document.querySelector("#coffeeOut1").innerHTML = "커피를 꺼냈습니다";
+            let iscoffeeOut = true;
+        }
+</script>
+</body>
+</html>

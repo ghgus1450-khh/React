@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+
+    <script>
+        // function 첫번째 방법
+        const myFunction = new Function("a","b","return a*b");
+        console.log("함수 출력기능 1 :" + myFunction(30,2));
+
+
+
+        // function 두번째 방법 
+        const x = function(a,b) {return a * b};
+        const y = function(a,b) {return a * b};
+
+        document.querySelector("#demo").innerHTML = "함수 출력기능 2 :" + x(3,4);
+        document.querySelector("#demo").innerHTML = "함수 출력기능 2 :" + y(-20,4);
+
+        
+        // Arrow Functions
+
+        const z = (a,b) => a * b;
+        let result = z(4,5);
+        document.querySelector("#demo1").innerHTML = "function 명 없이 화살표 함수 :" + result;
+
+        // function 세번째 방법
+        (function(){
+            document.querySelector("#demo2").innerHTML = "함수 출력기능 3, 텍스트 : Hello! I called mySelf"
+        })();
+
+        (function(a,b){
+            document.querySelector("#demo3").innerHTML = "함수 출력기능 3, 매개변수 :" + a*b;
+        })(3,4);
+
+        
+    
+    </script>
+</body>
+</html>

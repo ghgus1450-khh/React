@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2차원 배열 성적 데이터 처리</title>
+</head>
+<body>
+    
+    <h1>학생 성적 분석</h1>
+    <div id="dataContainer">
+        <h3>학생 성적 목록 :</h3>
+        <div id="dataBox"></div>
+    </div>
+    <button id="dataBtn" onclick="resultOut()">성적 분석하기</button>
+    <div id="result">
+        
+    </div>
+
+</body>
+<script>
+    // 2차원 배열
+    const students = [
+        ["김영희",85,90],["이철수",42,55],["박민수",77,80],["장하나",95,98],
+        ["손지훈",60,70],["최진영",55,45],["홍길동",90,88],["유미란",33,40],
+        ["정대웅",70,75],["깅태우",82,79]
+    ];
+
+    console.log(students);
+
+    // 배열값 출력
+    let dataBox = document.querySelector("#dataBox");
+    // let dataBtn = document.querySelector("#dataBtn").innerHTML;
+    let result = document.querySelector("#result");
+
+    for(let i=0; i<students.length; i++){
+        dataBox.innerHTML += 
+        `${students[i][0]} - 수학 : ${students[i][1]}점, 영어 : ${students[i][2]}점 <br> `;
+    
+    }
+
+    // 배열값 평균 60점 이상이면 합격, 이하면 불합격
+
+    function resultOut(){
+
+        let i=0;
+    
+        
+        while(i<students.length) {
+        let name = students[i][0];
+        let math = students[i][1];
+        let eng = students[i][2]; 
+        let average = (math + eng)/2;
+        let stdPass = average >= 60 ? "합격":"불합격";
+        i++;
+        
+        
+        result.innerHTML += `${name} : 평균 ${average}점 -> ${stdPass} <br> `;
+        }
+    };
+    
+    
+   
+
+
+</script>
+</html>

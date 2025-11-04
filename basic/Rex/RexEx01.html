@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Regular Expressions</h1>
+
+    <p>Search a string for "w3Schools", and display the position of the match:</p>
+    <p id="demo"></p>
+    <p id="demo2">Please visit Microsoft!</p>
+
+    <!-- <p id="demo"></p> -->
+
+    <script>
+        let text = "Visit W3Schools!";
+        let n = text.search(/w3Schools/i); // text.search(/패턴/i) => search : 패턴의 위치(i)를 찾아내라
+        const myArr = text.match(/W3Schools/); // match : 패턴과 겹치는(일치하는) 값을 찾아내라
+        
+        let text2 = document.getElementById("demo2").innerHTML;
+        text2 = text2.replace(/Microsoft!/, "W3Schools"); // replace : 특정 패턴에서 찾아내서 문자열 교체해라
+
+
+        document.getElementById("demo").innerHTML = n + "<br>" + myArr;
+        document.getElementById("demo2").innerHTML = text2; 
+    </script>
+</body>
+
+</html>

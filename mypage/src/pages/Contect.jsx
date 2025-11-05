@@ -3,13 +3,18 @@ import {Link} from "react-router-dom";
 
 export default function Contect (){
     
-    const [name, setName] = useState();
+    // set은 변수를 저장 및 변경하기 위한 함수
+    // setName이 호출되면 useState이 작동된다
+
+    const [name, setName] = useState("");
 
     return(
         <>
             <h3>Contect 창</h3>
-            <p>이름 : 강호현 <br /> 예쁜나이 스물다섯살 - 1</p>
-            {/* <input type="text" value={} onChange={} /> */}
+        
+            <input type="text" onChange={(e) => setName(e.target.value)} />
+            <p>이름 : {name}</p>
+
             <Link to={'/'} className="HomeBtn">홈으로</Link>
         </>
     );

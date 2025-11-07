@@ -25,12 +25,13 @@ export default function ProductForm({onAdd}){
                 />
 
                 <input type="number" placeholder="상품가격"
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => setPrice(Number(e.target.value))}
                 value={price}
                 />
 
                 <button>장바구니</button>
             </form>
+           
         </>
     );
 }

@@ -10,8 +10,8 @@ export default function Buyer(){
     const addCart = (item) => {
         setCart((p) => [...p, {id:Date.now(), ...item }] );
     };
-    const removeCart = (id) => {
-        setCart();
+    const removeCart = (id) => { // 배열의 값을 제거하는 방법 중에 하나 filter
+        setCart((p) => p.filter( (i) => i.id !== id) );
     };
 
     return (
@@ -31,11 +31,11 @@ export default function Buyer(){
                     <ProductForm onAdd={addCart} />}
                 // 부모가 가지고 있어야 하는건 결국 최종적인 것
                 />
-        
+
                 
                 <Route path='cart' 
                 element={
-                    <CartList cart={cart} />}
+                    <CartList cart={cart} onRemove={removeCart} />}
                  />
             </Routes>
           

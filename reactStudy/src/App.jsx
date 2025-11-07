@@ -11,8 +11,9 @@ import Store from './component/study1/Store'
 import Schedule from './component/study2/Schedule'
 import Student from './component/study2/Student'
 import Memo from './component/study2/Memo'
-import Buyer from './component/study3/Buyer';
-
+import Buyer from './component/study3/Buyer'
+import TestEffect from './component/study3/TestEffect'
+import TestFetch from './component/study3/TestFetch'
 
 
 
@@ -32,6 +33,8 @@ function App() {
           <Route path="/studentname" element={ <Student />} />
           <Route path="/simplememo" element={ <Memo />} />
           <Route path='/productBuy/*' element={<Buyer />} />
+          <Route path='/effect1' element={<TestEffect />} />
+          <Route path='/TestFetch' element={<TestFetch />} />
         </Routes>
       </Router>
 

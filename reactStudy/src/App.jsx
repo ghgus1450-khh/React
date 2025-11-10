@@ -14,7 +14,11 @@ import Memo from './component/study2/Memo'
 import Buyer from './component/study3/Buyer'
 import TestEffect from './component/study3/TestEffect'
 import TestFetch from './component/study3/TestFetch'
-
+import PorjName from './component/study3/ProjName'
+import PorjHeart from './component/study3/ProjHeart'
+import DataList from './component/study4/DataList'
+import DataList2 from './component/study4/DataList2'
+import UserInfo from './component/study4/UserInfo'
 
 
 function App() {
@@ -35,6 +39,11 @@ function App() {
           <Route path='/productBuy/*' element={<Buyer />} />
           <Route path='/effect1' element={<TestEffect />} />
           <Route path='/TestFetch' element={<TestFetch />} />
+          <Route path='/PorjName' element={<PorjName />} />
+          <Route path='/PorjHeart' element={<PorjHeart />} />
+          <Route path='/map1' element={<DataList />}/>
+          <Route path='/map2' element={<DataList2 />}/>
+          <Route path='/users' element={<UserInfo />}/>
         </Routes>
       </Router>
 

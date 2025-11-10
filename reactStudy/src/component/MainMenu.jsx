@@ -19,7 +19,8 @@ export default function MainMenu (){
             <Link to="/PorjHeart" className="menu">좋아요</Link>
             <Link to="/map1" className="menu">map출력</Link>
             <Link to="/map2" className="menu">map출력2</Link>
-            <Link to="/users" className="manu">유저들</Link>
+            <Link to="/users" className="menu">유저들</Link>
+            <Link to="/todo" className="menu">할일리스트</Link>
         </div>
     );
 }

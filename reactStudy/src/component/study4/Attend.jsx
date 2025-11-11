@@ -50,10 +50,14 @@ export default function Attend() {
 
             <div className="flex gap-1 items-center">
                 <p>이름정렬</p>
+                {/* 1. 정렬 변수를 만들고 useState에다가 true를 정해준다 
+                
+                */}
                 <button onClick={() => setAsc(true)}>오름차순</button>
                 <button onClick={() => setAsc(false)}>내림차순</button>
-                <button onClick={() => setAsc(asc*-1)}>
+                <button onClick={() => setAsc(!asc)}> 
                     {asc == true ? "오름차순" : "내림차순" }
+                    {/* !asc 로 토글 작업 내주기 */}
                 </button>
             </div>
 

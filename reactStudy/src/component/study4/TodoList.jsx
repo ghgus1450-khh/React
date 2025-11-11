@@ -21,6 +21,7 @@ export default function TodoList (){
     const remaining = todo.filter( t => !t.done ).length; // false 인 것만 추출
 
     //filter 함수로 걸러주기 (전체, 진행중, 완료)
+    // useMemo : 불필요하지 않은 랜더링 방지할 때 사용된다 (값이 변경될 때만 랜더링)
     const todoFilter = useMemo( () => {
         if(filter === "active") return todo.filter(t => !t.done);
         if(filter === "done") return todo.filter(t => t.done);

@@ -22,6 +22,8 @@ import UserInfo from './component/study4/UserInfo'
 import TodoList from './component/study4/TodoList'
 import Attend from './component/study4/Attend'
 
+import Placefetch from './component/study5/Placefetch'
+
 
 function App() {
 
@@ -48,6 +50,7 @@ function App() {
           <Route path='/users' element={<UserInfo />}/>
           <Route path='/todo' element={<TodoList />}/>
           <Route path='/attend' element={<Attend />}/>
+          <Route path='/place' element={<Placefetch />} />
         </Routes>
       </Router>
 

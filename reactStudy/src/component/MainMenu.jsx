@@ -22,6 +22,7 @@ export default function MainMenu (){
             <Link to="/users" className="menu">유저들</Link>
             <Link to="/todo" className="menu">할일리스트</Link>
             <Link to="/attend" className="menu">출석부</Link>
+            <Link to="/place" className="menu">날씨예제</Link>
         </div>
     );
 }

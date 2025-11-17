@@ -14,6 +14,9 @@ import DoughnutChart1 from './component/DoughnutChart';
 import PiChart from './component/PiChart';
 import DoughnutChart2 from './component/DoughnutChart2';
 import DoughnutChart3 from './component/DoughnutChart3';
+import MixChart from './component/MixChart';
+
+import ExpendList from './component/ExpendList';
 
 
 
@@ -41,6 +44,9 @@ function App() {
         <button onClick={() => setShow("J")} className={btClass("J")}>원형 도넛</button>
         <button onClick={() => setShow("K")} className={btClass("K")}>반 도넛</button>
         <button onClick={() => setShow("L")} className={btClass("L")}>도넛 진행바</button>
+        <button onClick={() => setShow("M")} className={btClass("M")}>믹스 차트</button>
+        <button onClick={() => setShow("N")} className={btClass("N")}>차트분석</button>
+        
       </div>
       
       <div className='mt-8'>
@@ -57,6 +63,8 @@ function App() {
         {show === "J" && <PiChart />}
         {show === "K" && <DoughnutChart2 />}
         {show === "L" && <DoughnutChart3 />}
+        {show === "M" && <MixChart />}
+        {show === "N" && <ExpendList />}
       </div>
     </>
   );

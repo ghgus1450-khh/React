@@ -42,9 +42,9 @@ export default function TodoForm(){
                 <input type="text" value={text} 
                    onChange={ (e) => setText(e.target.value) }
                    placeholder="할 일을 입력해라"
-                   className="rounded border bg-white border-gray-500 px-3 py-2"/>
+                   className="rounded border border-gray-500 px-3 py-2"/>
                 <button disabled={loading}
-                 className="rounded bg-green-600 px-6 py-2.5 text-white">
+                 className="rounded bg-green-600 px-6 py-2.5 ">
                     { loading ? "추가 중..."  : "추가" }
                 </button>
             </form>
